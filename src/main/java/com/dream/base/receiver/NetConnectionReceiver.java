@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 
 import com.dream.base.BaseApplication;
-import com.dream.utils.NetWorkUtil;
+import com.dream.base.common.NetWorkUtil;
 
 /**
  * Description: 网络连接状态的监听

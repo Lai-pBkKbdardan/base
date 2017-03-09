@@ -2,9 +2,9 @@ package com.dream.base;
 
 import android.app.Application;
 
+import com.dream.base.common.NetWorkUtil;
 import com.dream.base.interfaze.NetConnectionObserver;
 import com.dream.base.interfaze.NetConnectionSubject;
-import com.dream.utils.NetWorkUtil;
 
 import java.util.ArrayList;
 import java.util.List;
