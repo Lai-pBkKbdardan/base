@@ -1,4 +1,4 @@
-package com.dream.base;
+package com.dream.base.common;
 
 import android.app.Dialog;
 import android.content.Context;

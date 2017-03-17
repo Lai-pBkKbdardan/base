@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -24,7 +25,7 @@ import dream.base.R;
  * <p>
  * Copyright©2016 by wang. All rights reserved.
  */
-public abstract class BaseActivity extends Activity implements View.OnClickListener, NetConnectionObserver {
+public abstract class BaseFragmentActivity extends FragmentActivity implements View.OnClickListener, NetConnectionObserver {
 
     protected String TAG = "BaseActivity";
 
