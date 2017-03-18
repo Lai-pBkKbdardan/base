@@ -10,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.dream.base.common.DialogUtil;
 import com.dream.base.interfaze.NetConnectionObserver;
+import com.dream.base.widget.CommonTitleView;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import dream.base.R;
@@ -34,7 +36,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
      */
     protected Activity instance;
 
-    private RelativeLayout rootLayout;
+    private LinearLayout rootLayout;
 
     /**
      * Is transform status bar color? default = true
@@ -56,6 +58,10 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
      */
     private Dialog defaultLoadingDialog;
 
+    protected CommonTitleView commonTitleView;
+
+    private boolean isShowTitle = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,10 +76,23 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
         registerNetObserver(isRegisterNetObserver);
         getExtraData();
 
+        isShowTitle = isShowTitleView();
+
         initView();
         findViews();
+
+        extraAction(savedInstanceState);
+
         initData();
         setListeners();
+    }
+
+    protected boolean isShowTitleView() {
+        return false;
+    }
+
+    protected void extraAction(Bundle savedInstanceState) {
+
     }
 
     private void registerNetObserver(boolean isRegisterNetObserver) {
@@ -115,12 +134,30 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
      */
     private void initView() {
         setContentView(R.layout.activity_base_layout);
-        rootLayout = (RelativeLayout) findViewById(R.id.base_root);
+        rootLayout = (LinearLayout) findViewById(R.id.base_root);
+
+        commonTitleView = (CommonTitleView) findViewById(R.id.common_title);
+
+        if (isShowTitle) {
+            commonTitleView.setVisibility(View.VISIBLE);
+            findViewById(R.id.common_title_divider).setVisibility(View.VISIBLE);
+            initTitleView();
+        }
+
         int subclassLayoutId = setLayoutRes();
         View inflate = LayoutInflater.from(this).inflate(subclassLayoutId, null);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
         inflate.setLayoutParams(params);
         rootLayout.addView(inflate);
+    }
+
+    protected void initTitleView() {
+        commonTitleView.setOnLiftClick(new CommonTitleView.OnTitleClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     /**
@@ -170,7 +207,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
 
     private void initSystemBar(Activity activity) {
 
-        initSystemBar(activity, R.color.app_default_status_bar_color);
+        initSystemBar(activity, R.color.app_default_status_color);
 
     }
 

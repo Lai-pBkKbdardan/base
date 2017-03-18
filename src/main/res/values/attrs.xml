@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="CommonTitleView">
+        <attr name="ct_background" format="color" />
+        <attr name="ct_left_icon" format="reference" />
+        <attr name="ct_left_text" format="reference" />
+        <attr name="ct_right_icon" format="reference" />
+        <attr name="ct_right_text" format="reference" />
+        <attr name="ct_title" format="reference" />
+        <attr name="ct_title_color" format="color" />
+        <attr name="ct_left_color" format="color" />
+        <attr name="ct_right_color" format="color" />
+
+    </declare-styleable>
+
+</resources>
