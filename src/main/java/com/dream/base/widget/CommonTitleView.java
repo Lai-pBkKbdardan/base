@@ -2,6 +2,7 @@ package com.dream.base.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -173,12 +174,12 @@ public class CommonTitleView extends LinearLayout {
     }
 
     public void setTextColor(int colorRes) {
-        title.setTextColor(getResources().getColor(colorRes));
+        title.setTextColor(ContextCompat.getColor(getContext(), colorRes));
         if (leftText.getVisibility() == View.VISIBLE) {
-            leftText.setTextColor(getResources().getColor(colorRes));
+            leftText.setTextColor(ContextCompat.getColor(getContext(), colorRes));
         }
         if (rightText.getVisibility() == View.VISIBLE) {
-            rightText.setTextColor(getResources().getColor(colorRes));
+            rightText.setTextColor(ContextCompat.getColor(getContext(), colorRes));
         }
     }
 
@@ -200,15 +201,13 @@ public class CommonTitleView extends LinearLayout {
 
     public void setLeftString(int stringRes, final OnTitleClickListener onLiftClick) {
         leftText.setText(stringRes);
-        leftText.setVisibility(View.VISIBLE);
-        leftIcon.setVisibility(View.GONE);
+        leftContainer.setVisibility(View.VISIBLE);
         setOnLiftClick(onLiftClick);
     }
 
     public void setLeftIcon(int imgRes, final OnTitleClickListener onLiftClick) {
         leftIcon.setImageResource(imgRes);
-        leftIcon.setVisibility(View.VISIBLE);
-        leftText.setVisibility(View.GONE);
+        leftContainer.setVisibility(View.VISIBLE);
         setOnLiftClick(onLiftClick);
     }
 
@@ -218,8 +217,7 @@ public class CommonTitleView extends LinearLayout {
 
     public void setRightIcon(int imgRes, final OnTitleClickListener onRightListener) {
         rightIcon.setImageResource(imgRes);
-        rightIcon.setVisibility(View.VISIBLE);
-        rightText.setVisibility(View.GONE);
+        rightContainer.setVisibility(View.VISIBLE);
 
         setOnRightClick(onRightListener);
     }
@@ -229,8 +227,7 @@ public class CommonTitleView extends LinearLayout {
 
     public void setRightString(int stringRes, final OnTitleClickListener onRightListener) {
         rightText.setText(stringRes);
-        rightText.setVisibility(View.VISIBLE);
-        rightIcon.setVisibility(View.GONE);
+        rightContainer.setVisibility(View.VISIBLE);
 
         setOnRightClick(onRightListener);
     }
@@ -250,6 +247,10 @@ public class CommonTitleView extends LinearLayout {
                 }
             });
         }
+    }
+
+    public void setLeftGone() {
+        leftContainer.setVisibility(View.INVISIBLE);
     }
 
     /**
